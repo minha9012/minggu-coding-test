@@ -7,6 +7,7 @@ import java.util.*;
  *
  * 프로그래머스 - 해시 - Level 2 전화번호 목록
  *
+ * 문제 설명
  * 전화번호부에 적힌 전화번호 중, 한 번호가 다른 번호의 접두어인 경우가 있는지 확인하려 합니다.
  * 전화번호가 다음과 같을 경우, 구조대 전화번호는 영석이의 전화번호의 접두사입니다.
  *
@@ -35,7 +36,7 @@ import java.util.*;
  * 첫 번째 전화번호, “12”가 두 번째 전화번호 “123”의 접두사입니다. 따라서 답은 false입니다.
  */
 
-public class yellowPages {
+public class YellowPages {
 
     private static final String[] input1 = {"119", "97674223", "1195524421"};
     private static final String[] input2 = {"123","456","789"};
@@ -47,7 +48,7 @@ public class yellowPages {
         System.out.println(solution(input3));
     }
 
-    public static boolean solution(String[] phone_book) {
+    private static boolean solution(String[] phone_book) {
     /*
     for(String p : phone_book){
         for(String s : phone_book ){
