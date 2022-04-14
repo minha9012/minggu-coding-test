@@ -60,9 +60,8 @@ public class Camouflage {
 
         HashMap<String, Integer> hm = new HashMap<>();
 
-        for (String[] clothe : clothes) {
+        for (String[] clothe : clothes)
             hm.put(clothe[1], hm.getOrDefault(clothe[1], 1) + 1); //key값 먼저 담기
-        }
 
         int answer = 1;
         for( String key : hm.keySet() ){
