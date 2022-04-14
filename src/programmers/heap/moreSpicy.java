@@ -39,6 +39,7 @@ public class moreSpicy {
     private static final int inputK = 5;
 
     public static void main(String[] args) {
+
         System.out.println(solution(inputArr, inputK)); //expect 2
     }
 
@@ -58,8 +59,10 @@ public class moreSpicy {
             scoville[1] = scoville[0] + scoville[1] * 2; //합치기
 
             int[] newScoville = new int[scoville.length - 1];
-            for(int i=0;i<newScoville.length;i++)
-                newScoville[i] = scoville[i+1]; //[5,3,9,10,12]
+
+            //[5,3,9,10,12]
+            //for(int i=0;i<newScoville.length;i++) newScoville[i] = scoville[i+1];
+            System.arraycopy(scoville, 1, newScoville, 0, newScoville.length);
 
             scoville = newScoville ;
         }
