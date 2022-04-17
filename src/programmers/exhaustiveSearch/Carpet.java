@@ -47,10 +47,10 @@ public class Carpet {
 
         int carpets = brown / 2;
 
-        for(int hieght = carpets - 1; hieght >= carpets / 2 ; hieght--){
-            int width = carpets - hieght;
-            if((width-1) * (hieght-1) == yellow){
-                answer[0] = hieght + 1;
+        for(int height = carpets - 1; height >= carpets / 2 ; height--){
+            int width = carpets - height;
+            if((width-1) * (height-1) == yellow){
+                answer[0] = height + 1;
                 answer[1] = width + 1;
                 return answer;
             }
