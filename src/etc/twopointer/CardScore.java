@@ -1,8 +1,8 @@
 package etc.twopointer;
 
- import java.util.*;
-        import java.util.Map.Entry;
-        import java.util.stream.Collectors;
+import java.util.*;
+import java.util.Map.Entry;
+import java.util.stream.Collectors;
 
 public class CardScore {
     /**
@@ -29,11 +29,29 @@ public class CardScore {
 
     private static int solution(int[] inputArr, int k) {
         int answer = 0;
+        int left = 0;
+        int right = 0;
+        int sum = 0;
 
+        for (int start=0; start < k; start++){
+
+            while(start <= k) {
+                left = inputArr[start];
+                right = inputArr[inputArr.length - 1];
+            }
+
+            sum = left + right;
+
+            if(answer < sum) answer = sum;
+        }
+
+
+        System.out.println(sum);
+
+
+        /*
         int sum = 0;
         int end = 0; // start를 차례대로 증가시키며 반복
-
-
 
         for (int start = 0; start < k; start++) { // end를 가능한 만큼 이동시키기
             while ( end < k) {
@@ -43,8 +61,9 @@ public class CardScore {
             sum -= inputArr[start];
         }
         System.out.println(sum);
+        */
 
-
+        System.out.println("finished!");
         return answer;
     }
 
