@@ -37,7 +37,8 @@ import java.util.Arrays;
 public class ColoringBook {
     static int numberOfArea;
     static int maxSizeOfOneArea;
-    static int tempSizeOfOneArea; //현재넓이 임시저장 할 변수
+    static int tempSize; //현재넓이 임시저장 할 변수
+    static boolean[][] visited;
 
     // 좌표에서의 상,하,좌,우 탐색을 위한 배열.
     static int[] dx = {-1,1,0,0};
@@ -58,11 +59,11 @@ public class ColoringBook {
     public static int[] solution(int m, int n, int[][] picture) {
         numberOfArea = 0;
         maxSizeOfOneArea = 0;
-        tempSizeOfOneArea = 0;
+        tempSize = 0;
 
         int[] answer = new int[2];
 
-        boolean[][] visited = new boolean[m][n]; //체크배열
+        visited = new boolean[m][n]; //체크배열
 
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
@@ -71,8 +72,8 @@ public class ColoringBook {
                     DFS(i,j,picture,visited); //DFS 시작
                 }
                 //최대 넓이 변경
-                maxSizeOfOneArea = Math.max(maxSizeOfOneArea, tempSizeOfOneArea);
-                tempSizeOfOneArea = 0;
+                maxSizeOfOneArea = Math.max(maxSizeOfOneArea, tempSize);
+                tempSize = 0;
             }
         }
 
@@ -86,7 +87,7 @@ public class ColoringBook {
         if(visited[x][y]) return; //방문한적 있으면 스킵
         else visited[x][y] = true; //방문체크
 
-        tempSizeOfOneArea++; //영역 넓이 1씩 증가
+        tempSize++; //영역 넓이 1씩 증가
 
         //한 좌표에서 상,하,좌,우 탐색.
         for(int i =0;i<4;i++){
