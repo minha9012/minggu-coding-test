@@ -35,20 +35,19 @@ package programmers.binarySearch;
 
 
 public class Immigration {
-/*
-    private static final int[][] input1 = [1, 1, 0], [1, 1, 0], [0, 0, 1]; //expect 5
-    private static final int inputN = 3;
-    private static final int[][] input2 = {4, 1, 2, 1}; //expect 2
-    private static final int inputN2 = 4;
+    // 좌표에서의 상,하,좌,우 탐색을 위한 배열.
+    static int[] dx = {-1,1,0,0};
+    static int[] dy = {0,0,-1,1};
+
+    static final int inputN = 6;
+    static final int[][] inputArr = {{3, 6}, {4, 3}, {3, 2}, {1, 3}, {1, 2}, {2, 4}, {5, 2}}; //expect 3
 
     public static void main(String[] args) {
-        System.out.println(solution(input1, target1));
-        System.out.println(solution(input2, target2));
+        System.out.println(solution(inputN, inputArr));
     }
 
-    public static long solution(int n, int[] times) {
-        long answer = 0;
+    public static int solution(int n, int[][] edge) {
+        int answer = 0;
         return answer;
     }
- */
 }
