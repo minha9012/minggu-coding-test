@@ -1,5 +1,8 @@
 package leetCode;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
  * https://leetcode.com/problems/two-sum/
  *
@@ -41,7 +44,7 @@ package leetCode;
 public class twoSum {
 
     static final int inputTarget1 = 9;
-    static final int[] inputArr1 = {0,1}; //expect [0,1]
+    static final int[] inputArr1 = {2,7,11,15}; //expect [0,1]
     static final int inputTarget2 = 6;
     static final int[] inputArr2 = {3,2,4}; //expect [1,2]
     static final int inputTarget3 = 6;
@@ -55,6 +58,16 @@ public class twoSum {
 
     public static int[] solution(int[] nums, int target) {
         int[] answer = new int[2];
+
+        for(int i=0;i<nums.length;i++){
+            for(int j=i+1;j<nums.length;j++){
+                if(nums[i] + nums[j] == target){
+                    answer[0] = i;
+                    answer[1] = j;
+                }
+            }
+        }
+
         return answer;
     }
 }
