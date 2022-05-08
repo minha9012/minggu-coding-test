@@ -1,4 +1,4 @@
-package leetCode;
+package leetCode.easy;
 
 /**
  * https://leetcode.com/problems/add-two-numbers/
