@@ -46,31 +46,32 @@ public class longestPalindromicSubstring {
     }
 
     public static String solution(String input) {
+
+        char startStr = '\0'; //시작문자
+        char endStr = '\0'; //종료문자
+        int betweenLength = 0;
+
         for(int i=0;i<input.length();i++){
+            startStr = input.charAt(i);
+
+            // index 마지막에서부터 같은 문자를 찾는다.
+            for(int j= input.length()-1; j > 0;j--){
+                endStr = input.charAt(j);
+
+                System.out.println("start : " + startStr + ", end : " + endStr);
+
+                if( startStr == endStr){
+                    betweenLength = Math.max(betweenLength, j-i);
+                    System.out.println("between : " + betweenLength);
+                    break;
+                }
+
+            }
+
             System.out.println(input.charAt(i));
+
         }
 
-        /*
-
-        HashMap<Character, Integer> hm = new HashMap();
-
-        // 1. hashMap에  담기
-        for (int i = 0; i < input.length(); i++)
-            hm.put(input.charAt(i), hm.getOrDefault(input.charAt(i), 0) + 1); //key값 먼저 담기
-
-        // 2. 빈도순 기준으로 내림차순 알파벳 정렬
-        List<Map.Entry<Character, Integer>> entryList = new ArrayList<>(hm.entrySet());
-        entryList.sort((o1, o2) -> o2.getValue().compareTo(o1.getValue()));
-
-        // 3. value 만큼 key 반복해 String 으로
-        StringBuilder answer = new StringBuilder();
-        for (Map.Entry<Character, Integer> characterIntegerEntry : entryList)
-            answer.append(String.valueOf(characterIntegerEntry.getKey()).repeat(Math.max(0, characterIntegerEntry.getValue())));
-
-//        String answer = entryList.stream().map(Entry::getKey).collect(Collectors.toList()) //entry keySet to Char List
-//                .stream().map(String::valueOf).collect(Collectors.joining()); // Char List to String
-
-         */
         return "finish";
     }
 }
