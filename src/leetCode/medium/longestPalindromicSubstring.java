@@ -2,11 +2,6 @@ package leetCode.medium;
 
 import org.apache.commons.lang3.RandomStringUtils;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
 /**
  * https://leetcode.com/problems/longest-palindromic-substring/
  * <p>
@@ -38,41 +33,37 @@ public class longestPalindromicSubstring {
     static final String input2 = "cbbd"; //expect "bb"
     static final String input3 = "aacabdkacaa"; //expect "aca"
     static final String input4 = "bb"; //expect "bb"
-    static final String input5 = "ccc"; //expect "bb"
+    static final String input5 = "ccc"; //expect "ccc"
 
     public static void main(String[] args) {
-//        System.out.println(solution(input1));
-//        System.out.println(solution(input2));
+        System.out.println(solution(input1));
+        System.out.println(solution(input2));
         System.out.println(solution(input3));
         System.out.println(solution(input4));
         System.out.println(solution(input5));
-//        for (int i = 0; i < 5; i++) System.out.println(solution(RandomStringUtils.randomAlphanumeric(10)));
+        for (int i = 0; i < 5; i++) System.out.println(solution(
+                RandomStringUtils.randomAlphanumeric(10).toLowerCase()));
 
     }
 
     public static String solution(String s) {
 
-        char startChar = '\0'; //시작문자
-        char endChar = '\0'; //종료문자
-        int betweenLength = 0; //문자 길이
-        String answer = ""; //출력된 문자
-
-        for (int i = 0; i < s.length(); i++) {
-            startChar = s.charAt(i);
-
-            // 다음 문자열부터 검사
-            for (int j = i + 1; j < s.length(); j++) {
-                endChar = s.charAt(j);
-
-                if (startChar == endChar && (j - i + 1) > betweenLength) {
-                    betweenLength = j - i + 1;
-                    answer = s.substring(i, j + 1);
-                    System.out.println("[i],[j] : " + i + "," + j + ", " + answer + "("+ betweenLength+")");
-                    break;
-                }
+        String ret = "";
+        for(int i=0 ; i<s.length() ; i++) {
+            int len = Math.max(helper(s,i,i), helper(s,i,i+1));
+            if(ret.length()<len) {
+                ret = s.substring(i-(len-1)/2, i+len/2+1);
             }
         }
+        return ret;
+    }
 
-        return betweenLength <= 1 ? String.valueOf(startChar) : answer;
+    public static int helper(String str, int s, int e) {
+        if(s<0 || e>=str.length()) return 0;
+        while(s>=0 && e<str.length() && str.charAt(s)==str.charAt(e)) {
+            s--;
+            e++;
+        }
+        return e-s-1;
     }
 }
