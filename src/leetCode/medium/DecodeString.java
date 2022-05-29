@@ -1,5 +1,12 @@
 package leetCode.medium;
 
+import org.junit.jupiter.api.Test;
+
+import java.util.Stack;
+
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 /**
  * https://leetcode.com/problems/decode-string/
  *
@@ -37,19 +44,62 @@ package leetCode.medium;
 
 public class DecodeString {
 
-    static final String input1 = "3[a]2[bc]"; //expect "aaabcbc"
-    static final String input2 = "3[a2[c]]"; //expect "accaccacc"
-    static final String input3 = "2[abc]3[cd]ef"; //expect "abcabccdcdcdef"
-
-    public static void main(String[] args) {
-        System.out.println(solution(input1));
-        System.out.println(solution(input2));
-        System.out.println(solution(input3));
+    @Test
+    void givenString_whenDecode_thenCorrect() {
+        assertAll(
+                () -> test("3[a]2[bc]", "aaabcbc"),
+                () -> test("3[a2[c]]", "accaccacc"),
+                () -> test("2[abc]3[cd]ef", "abcabccdcdcdef"),
+                () -> test("abc3[cd]xyz", "abccdcdcdxyz")
+        );
     }
 
-    public static String solution(String s) {
-        String answer = "";
+    private void test(String given, String expected) {
+        // when
+        String actual = DecodeString.decodeString(given);
 
-        return answer;
+        // then
+        assertEquals(expected, actual);
     }
+
+    public static String decodeString(String s) {
+        StringBuilder result = new StringBuilder();
+        Stack<Integer> countStack = new Stack<>();
+        Stack<String> resultStack = new Stack<>();
+
+        int index = 0;
+
+        while (index < s.length()) {
+            if (Character.isDigit(s.charAt(index))) { // 1. 숫자일 때, 반복해야 할 횟수를 스택에 저장
+                int count = 0;
+                while (Character.isDigit(s.charAt(index))) {
+                    count = 10 * count + (s.charAt(index) - '0');
+                    index++;
+                }
+                countStack.push(count);
+
+            } else if (s.charAt(index) == '[') { // 2. 문자가 "["일 때, 리턴 스택에 여태까지의 문자열 저장
+                resultStack.push(result.toString());
+                result = new StringBuilder();
+                index++;
+
+            } else if (s.charAt(index) == ']') { // 3. 문자가 "]"일 때, 스택을 pop하여 countStack의 top만큼 append
+                StringBuilder temp = new StringBuilder(resultStack.pop());
+                int repeatTimes = countStack.pop();
+                temp.append(result.toString().repeat(Math.max(0, repeatTimes)));
+                result = new StringBuilder(temp.toString());
+                index++;
+
+            } else { // 4. 일반 문자일 경우 결과에 더해줌
+                result.append(s.charAt(index));
+                index++;
+            }
+        }
+
+        return result.toString();
+    }
+
+
 }
+
+
