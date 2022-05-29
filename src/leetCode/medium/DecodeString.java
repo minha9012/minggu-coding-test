@@ -64,8 +64,8 @@ public class DecodeString {
 
     public static String decodeString(String s) {
         StringBuilder result = new StringBuilder();
-        Stack<Integer> countStack = new Stack<>();
-        Stack<String> resultStack = new Stack<>();
+        Stack<Integer> countStack = new Stack<>(); //횟수 스택
+        Stack<String> resultStack = new Stack<>(); //결과값 스택
 
         int index = 0;
 
@@ -73,7 +73,7 @@ public class DecodeString {
             if (Character.isDigit(s.charAt(index))) { // 1. 숫자일 때, 반복해야 할 횟수를 스택에 저장
                 int count = 0;
                 while (Character.isDigit(s.charAt(index))) {
-                    count = 10 * count + (s.charAt(index) - '0');
+                    count = 10 * count + (s.charAt(index) - '0'); //자리수가 여러개라면,
                     index++;
                 }
                 countStack.push(count);
