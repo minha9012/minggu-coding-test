@@ -62,10 +62,9 @@ public class CourseSchedule {
         assertEquals(expected, actual);
     }
 
+    //DAG(Directed Acyclic Graph)에 적용가능한 위상정렬(Topological Sort)로 접근
     public static boolean canFinish(int numCourses, int[][] prerequisites){
-        //DAG(Directed Acyclic Graph)에 적용가능한 위상정렬(Topological Sort)로 접근
-
-        int[] indegree = new int[numCourses]; //진입차수
+        int[] inDegree = new int[numCourses]; //진입차수
         List<List<Integer>> adjacencyList = new ArrayList<>(); //인접노드 리스트
         Queue<Integer> result = new LinkedList<>();
         Queue<Integer> queue = new LinkedList<>();
@@ -78,19 +77,19 @@ public class CourseSchedule {
             int end = prerequisite[0]; //후수과목
 
             adjacencyList.get(start).add(end); //인접노드 리스트에 추가
-            indegree[end]++; //차수 증가
+            inDegree[end]++; //진입차수 증가
         }
 
         for(int i=0;i<numCourses;i++)
-            if(indegree[i] == 0) queue.offer(i); //진입차수가 0인 노드만 Queue에 삽입(시작점)
+            if(inDegree[i] == 0) queue.offer(i); //진입차수가 0인 노드만 Queue에 삽입(시작점)
 
         while(!queue.isEmpty()){
             int currNode = queue.poll(); //현재노드 출력 후 삭제
             result.offer(currNode); //현재노드 결과큐에 저장
 
             for(int child : adjacencyList.get(currNode)){
-                indegree[child]--; //연결된 간선 제거 후 진입차수 갱신
-                if(indegree[child] == 0) queue.offer(child); //진입차수가 0이 되면 Queue에 삽입
+                inDegree[child]--; //연결된 간선 제거 후 진입차수 갱신
+                if(inDegree[child] == 0) queue.offer(child); //전부 제거되어 진입차수가 0이 되면 Queue에 삽입
             }
         }
 
