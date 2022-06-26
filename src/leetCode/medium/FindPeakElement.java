@@ -74,37 +74,24 @@ public class FindPeakElement {
     }
 
     // 2. 분할 정복 알고리즘(Divide and Conquer Algorithm)
-    static int findPeakUtil(
-            int arr[], int low, int high, int n) {
-        // Find index of middle element
-        // low + (high - low) / 2
-        int mid = low + (high - low) / 2;
+    static int findPeakUtil(int[] arr, int low, int high, int n) {
+        int mid = low + (high - low) / 2; //중앙값
 
-        // Compare middle element with its
-        // neighbours (if neighbours exist)
+        //중앙값과 이웃한 값들 비교
         if ((mid == 0 || arr[mid - 1] <= arr[mid])
                 && (mid == n - 1 || arr[mid + 1] <= arr[mid]))
             return mid;
 
-            // If middle element is not peak
-            // and its left neighbor is
-            // greater than it, then left half
-            // must have a peak element
+        // 중앙값이 극대값이 아니고, 왼쪽 이웃이 더 크다면 왼쪽 배열에 극대값이 존재
         else if (mid > 0 && arr[mid - 1] > arr[mid])
             return findPeakUtil(arr, low, (mid - 1), n);
 
-            // If middle element is not peak
-            // and its right neighbor
-            // is greater than it, then right
-            // half must have a peak
-            // element
-        else
-            return findPeakUtil(
+        //아니라면 오른쪽 배열에 극대값 존재
+        else return findPeakUtil(
                     arr, (mid + 1), high, n);
     }
 
-    // A wrapper over recursive function
-    // findPeakUtil()
+    //재귀 함수
     static int findPeak(int arr[], int n) {
         return findPeakUtil(arr, 0, n - 1, n);
     }
