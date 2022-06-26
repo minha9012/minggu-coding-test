@@ -100,7 +100,7 @@ public class FindPeakElement {
     }
 
     //재귀 함수
-    static int findPeak(int arr[], int n) {
+    static int findPeak(int[] arr, int n) {
         return DAC(arr, 0, n - 1, n);
     }
 }
