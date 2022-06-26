@@ -39,19 +39,30 @@ public class FindPeakElement {
     @Test
     void givenIntArray_whenFindPeakElement_thenCorrect() {
         assertAll(
-                () -> test(new int[]{1, 2, 3, 1}, 2),
-                () -> test(new int[]{1, 2, 1, 3, 5, 6, 4}, 5)
+                () -> test_binarySearch(new int[]{1, 2, 3, 1}, 2),
+                () -> test_binarySearch(new int[]{1, 2, 1, 3, 5, 6, 4}, 5)
+
+        );
+        assertAll(
+                () -> test_findPeak(new int[]{1, 2, 3, 1}, 2),
+                () -> test_findPeak(new int[]{1, 2, 1, 3, 5, 6, 4}, 5)
         );
     }
 
-    private void test(int[] given, int expected) {
+    private void test_binarySearch(int[] given, int expected) {
         // when
-        int actual1 = FindPeakElement.binarySearch(given); //이진탐색
-        int actual2 = FindPeakElement.findPeak(given, given.length); //분할정복
+        int actual = FindPeakElement.binarySearch(given); //이진탐색
 
         // then
-        assertEquals(expected, actual1);
-        assertEquals(expected, actual2);
+        assertEquals(expected, actual);
+    }
+
+    private void test_findPeak(int[] given, int expected) {
+        // when
+        int actual = FindPeakElement.findPeak(given, given.length); //분할정복
+
+        // then
+        assertEquals(expected, actual);
     }
 
     // 1. 이진 탐색(Binary Search)
@@ -72,20 +83,20 @@ public class FindPeakElement {
     }
 
     // 2. 분할 정복 알고리즘(Divide and Conquer Algorithm)
-    static int DAC(int[] arr, int low, int high, int n) {
-        int mid = low + (high - low) / 2; //중앙값
+    static int DAC(int[] nums, int left, int right, int length) {
+        int mid = left + (right - left) / 2; //중앙값
 
         //중앙값과 이웃한 값들 비교
-        if ((mid == 0 || arr[mid - 1] <= arr[mid])
-                && (mid == n - 1 || arr[mid + 1] <= arr[mid]))
+        if ((mid == 0 || nums[mid - 1] <= nums[mid])
+                && (mid == length - 1 || nums[mid + 1] <= nums[mid]))
             return mid;
 
-        // 중앙값이 극대값이 아니고, 왼쪽 이웃이 더 크다면 왼쪽 배열에 극대값이 존재
-        else if (mid > 0 && arr[mid - 1] > arr[mid])
-            return DAC(arr, low, (mid - 1), n);
+            // 중앙값이 극대값이 아니고, 왼쪽 이웃이 더 크다면 왼쪽 배열에 극대값이 존재
+        else if (mid > 0 && nums[mid - 1] > nums[mid])
+            return DAC(nums, left, (mid - 1), length);
 
-        //아니라면 오른쪽 배열에 극대값 존재
-        else return DAC(arr, (mid + 1), high, n);
+            //아니라면 오른쪽 배열에 극대값 존재
+        else return DAC(nums, (mid + 1), right, length);
     }
 
     //재귀 함수
