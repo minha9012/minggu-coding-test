@@ -27,7 +27,7 @@ import org.apache.commons.lang3.RandomStringUtils;
  */
 
 
-public class longestPalindromicSubstring {
+public class LongestPalindromicSubstring {
 
     static final String input1 = "babad"; //expect "bab" or "aba"
     static final String input2 = "cbbd"; //expect "bb"
