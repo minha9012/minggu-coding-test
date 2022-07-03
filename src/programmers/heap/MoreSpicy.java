@@ -34,7 +34,7 @@ import java.util.*;
  * 모든 음식의 스코빌 지수가 7 이상이 되었고 이때 섞은 횟수는 2회입니다.
  */
 
-public class moreSpicy {
+public class MoreSpicy {
     private static final int[] inputArr = {1, 2, 3, 9, 10, 12};
     private static final int inputK = 5;
 
