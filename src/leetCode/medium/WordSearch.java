@@ -35,17 +35,17 @@ package leetCode.medium;
  */
 
 
-public class wordSearch {
+public class WordSearch {
 
     static final String inputWord1 = "ABCCED";
     static final String inputWord2 = "SEE";
     static final String inputWord3 = "ABCB";
-    static final char[][] inputArr = {{"A","B","C","E"},{"S","F","C","S"},{"A","D","E","E"}}; //expect {0,1]
+//    static final char[][] inputArr = {{"A","B","C","E"},{"S","F","C","S"},{"A","D","E","E"}}; //expect {0,1]
 
     public static void main(String[] args) {
-        System.out.println(solution(inputArr, inputWord1));
-        System.out.println(solution(inputArr, inputWord2));
-        System.out.println(solution(inputArr, inputWord3));
+//        System.out.println(solution(inputArr, inputWord1));
+//        System.out.println(solution(inputArr, inputWord2));
+//        System.out.println(solution(inputArr, inputWord3));
     }
 
     public static boolean solution(char[][] board, String word) {
