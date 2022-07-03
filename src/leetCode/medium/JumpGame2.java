@@ -31,7 +31,7 @@ package leetCode.medium;
  */
 
 
-public class jumpGame2 {
+public class JumpGame2 {
 
     static final int[] inputArr1 = {2,3,1,1,4}; //expect 2
     static final int[] inputArr2 = {2,3,0,1,4}; //expect 2
