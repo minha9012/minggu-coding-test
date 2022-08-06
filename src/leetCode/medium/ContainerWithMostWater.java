@@ -31,7 +31,7 @@ package leetCode.medium;
  */
 
 
-public class containerWithMostWater {
+public class ContainerWithMostWater {
 
     static final int[] inputArr1 = {1,8,6,2,5,4,8,3,7}; //expect 49
     static final int[] inputArr2 = {1,1}; //expect 1
